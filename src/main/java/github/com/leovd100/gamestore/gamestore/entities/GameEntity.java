@@ -10,8 +10,8 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "table_video")
-public class ObjectVideo {
+@Table(name = "games")
+public class GameEntity {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,10 +30,10 @@ public class ObjectVideo {
 	private Integer secao;
 	
 	
-	public ObjectVideo() {
+	public GameEntity() {
 	}
 	
-	public ObjectVideo(Long id, String nome, String imagem, Double preco, Integer secao) {
+	public GameEntity(Long id, String nome, String imagem, Double preco, Integer secao) {
 		
 		this.id = id;
 		this.nome = nome;
