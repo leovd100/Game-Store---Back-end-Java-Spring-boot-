@@ -26,15 +26,20 @@ public class ObjectVideo {
 	@Column(name = "preco")
 	private Double preco;
 
+	@Column(name = "secao_id")
+	private Integer secao;
+	
+	
 	public ObjectVideo() {
 	}
 	
-	public ObjectVideo(Long id, String nome, String imagem, Double preco) {
+	public ObjectVideo(Long id, String nome, String imagem, Double preco, Integer secao) {
 		
 		this.id = id;
 		this.nome = nome;
 		this.imagem = imagem;
 		this.preco = preco;
+		this.secao = secao;
 	}
 
 	public Long getId() {
@@ -68,5 +73,15 @@ public class ObjectVideo {
 	public void setPreco(Double preco) {
 		this.preco = preco;
 	}
+
+	public Integer getSecao() {
+		return secao;
+	}
+
+	public void setSecao(Integer secao) {
+		this.secao = secao;
+	}
+	
+	
 	
 }
