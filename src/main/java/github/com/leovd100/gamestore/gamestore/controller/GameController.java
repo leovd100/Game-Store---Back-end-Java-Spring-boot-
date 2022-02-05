@@ -19,7 +19,7 @@ public class GameController {
 	@Autowired
 	private GameStoreRepository gameStoreRepository;
 	
-	@GetMapping(value = "")
+	@GetMapping
 	public List<GameEntity> findAll() {
 		List<GameEntity> result = gameStoreRepository.findAll();
 		return result;

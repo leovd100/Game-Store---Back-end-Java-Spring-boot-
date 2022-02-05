@@ -33,5 +33,8 @@ public class VideoEntity {
 	@Column(name = "Path_Person")
 	private String pathPerson;
 	
+	@Column(name = "Path_logo")
+	private String pathLogo;
+	
 
 }
