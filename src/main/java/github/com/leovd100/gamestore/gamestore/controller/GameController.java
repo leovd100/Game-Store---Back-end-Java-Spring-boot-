@@ -1,12 +1,15 @@
 package github.com.leovd100.gamestore.gamestore.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import github.com.leovd100.gamestore.gamestore.entities.GameEntity;
@@ -26,11 +29,17 @@ public class GameController {
 	}
 	
 	
-	@GetMapping(value = "/{id}")
+	@GetMapping(value = "filter/{id}")
 	public GameEntity findById(@PathVariable Long id) {
 			Optional<GameEntity>  objVideo = gameStoreRepository.findById(id);
 			return objVideo.get();
 	}
 	
+	
+	@GetMapping(value = "/filter")
+	public ResponseEntity<List<GameEntity>> findByGameName(@RequestParam("name") String name){
+		List<GameEntity> filtedList = gameStoreRepository.findByNomeContains(name);
+		return ResponseEntity.ok(filtedList);
+	}
 	
 }
