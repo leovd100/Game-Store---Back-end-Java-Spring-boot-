@@ -10,5 +10,6 @@ import github.com.leovd100.gamestore.gamestore.entities.GameEntity;
 @Repository
 public interface GameStoreRepository extends  JpaRepository<GameEntity,Long>  {
 	
-	List<GameEntity> findByNomeContains(String nome);
+	List<GameEntity> findByNomeContainsIgnoreCase(String nome);
+	List<GameEntity> findBySecao(Integer id);
 }

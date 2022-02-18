@@ -38,8 +38,16 @@ public class GameController {
 	
 	@GetMapping(value = "/filter")
 	public ResponseEntity<List<GameEntity>> findByGameName(@RequestParam("name") String name){
-		List<GameEntity> filtedList = gameStoreRepository.findByNomeContains(name);
+		List<GameEntity> filtedList = gameStoreRepository.findByNomeContainsIgnoreCase(name);
 		return ResponseEntity.ok(filtedList);
+	}
+	
+	///http://localhost:8081/games/filter/sessao?id=2
+	
+	@GetMapping(value = "/filter/sessao")
+	public ResponseEntity<List<GameEntity>> findBySessionId(@RequestParam("id") Integer id){ 
+		List<GameEntity> teste = gameStoreRepository.findBySecao(id);
+		return ResponseEntity.ok(teste);
 	}
 	
 }
