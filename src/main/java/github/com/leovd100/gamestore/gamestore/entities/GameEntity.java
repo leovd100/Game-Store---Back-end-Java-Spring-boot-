@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 
 
@@ -29,17 +30,22 @@ public class GameEntity {
 	@Column(name = "secao_id")
 	private Integer secao;
 	
+	@Lob
+	@Column(name = "descricao")
+	private String descricao;
 	
 	public GameEntity() {
 	}
 	
-	public GameEntity(Long id, String nome, String imagem, Double preco, Integer secao) {
+	
+	public GameEntity(Long id, String nome, String imagem, Double preco, Integer secao, String descricao) {
 		
 		this.id = id;
 		this.nome = nome;
 		this.imagem = imagem;
 		this.preco = preco;
 		this.secao = secao;
+		this.descricao = descricao;
 	}
 
 	public Long getId() {
@@ -82,6 +88,14 @@ public class GameEntity {
 		this.secao = secao;
 	}
 	
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
 	
 	
 }
