@@ -46,7 +46,7 @@ public class GameController {
 	
 	@GetMapping(value = "/filter/sessao")
 	public ResponseEntity<List<GameEntity>> findBySessionId(@RequestParam("id") Integer id){ 
-		List<GameEntity> teste = gameStoreRepository.findBySecao(id);
+		List<GameEntity> teste = gameStoreRepository.findBySessao(id);
 		return ResponseEntity.ok(teste);
 	}
 	

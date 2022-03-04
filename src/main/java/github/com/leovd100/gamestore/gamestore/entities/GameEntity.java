@@ -8,10 +8,17 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 
 
 @Entity
 @Table(name = "games")
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class GameEntity {
 	
 	@Id
@@ -27,75 +34,14 @@ public class GameEntity {
 	@Column(name = "preco")
 	private Double preco;
 
-	@Column(name = "secao_id")
-	private Integer secao;
+	@Column(name = "sessao_id")
+	private Integer sessao;
 	
 	@Lob
 	@Column(name = "descricao")
 	private String descricao;
 	
-	public GameEntity() {
-	}
 	
-	
-	public GameEntity(Long id, String nome, String imagem, Double preco, Integer secao, String descricao) {
-		
-		this.id = id;
-		this.nome = nome;
-		this.imagem = imagem;
-		this.preco = preco;
-		this.secao = secao;
-		this.descricao = descricao;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getImagem() {
-		return imagem;
-	}
-
-	public void setImagem(String imagem) {
-		this.imagem = imagem;
-	}
-
-	public Double getPreco() {
-		return preco;
-	}
-
-	public void setPreco(Double preco) {
-		this.preco = preco;
-	}
-
-	public Integer getSecao() {
-		return secao;
-	}
-
-	public void setSecao(Integer secao) {
-		this.secao = secao;
-	}
-	
-	public String getDescricao() {
-		return descricao;
-	}
-
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
-
 	
 	
 }
