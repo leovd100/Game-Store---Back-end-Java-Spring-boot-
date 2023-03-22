@@ -1,4 +1,4 @@
-package github.com.leovd100.gamestore.gamestore.entities.repository;
+package github.com.leovd100.gamestore.gamestore.repository;
 
 import java.util.List;
 

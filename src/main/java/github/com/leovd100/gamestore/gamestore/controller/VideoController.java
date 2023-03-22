@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import github.com.leovd100.gamestore.gamestore.entities.VideoEntity;
-import github.com.leovd100.gamestore.gamestore.entities.repository.VideoRepository;
+import github.com.leovd100.gamestore.gamestore.repository.VideoRepository;
 
 @RestController
 @RequestMapping(value = "/video")
