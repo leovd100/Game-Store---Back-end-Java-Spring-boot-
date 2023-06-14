@@ -3,6 +3,7 @@ package github.com.leovd100.gamestore.gamestore.controller;
 import java.util.List;
 import java.util.Optional;
 
+import github.com.leovd100.gamestore.gamestore.service.impl.VideoServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,19 +16,18 @@ import github.com.leovd100.gamestore.gamestore.repository.VideoRepository;
 @CrossOrigin("*")
 public class VideoController{
 
+
 	@Autowired
-	private VideoRepository videoRepository;
-	
+	private VideoServiceImpl videoService;
+
 	@GetMapping
-	public ResponseEntity<List<VideoEntity>> findAll(){ 
-		List<VideoEntity> listaVideos = videoRepository.findAll();
-		return ResponseEntity.ok(listaVideos);
+	public ResponseEntity<List<VideoEntity>> findAll(){
+		return ResponseEntity.ok(videoService.findAll());
 	}
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<VideoEntity> findById(@PathVariable Long id){
-		Optional<VideoEntity> obj = videoRepository.findById(id);
-		return ResponseEntity.ok(obj.get());
+		return ResponseEntity.ok(videoService.findById(id));
 	}
 	
 }

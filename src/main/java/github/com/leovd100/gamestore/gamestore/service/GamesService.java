@@ -26,7 +26,7 @@ public class GamesService implements GameServiceImpl {
 
             List<CardGameDto> gameList = gameStoreRepository.findAll().stream().map(CardGameDto::new).collect(Collectors.toList());
             if(gameList.isEmpty()){
-                throw new GameException("Nenhum jogo encontrado");
+                throw new GameException("Nenhum jogo encontrado na base de dados");
             }
             return gameList;
 
@@ -35,7 +35,7 @@ public class GamesService implements GameServiceImpl {
 
     @Override
     public GameEntityDto findGameById(Long id) {
-            GameEntity game = gameStoreRepository.findById(id).orElseThrow(() -> new GameException("Nenhum jogo encontrado"));
+            GameEntity game = gameStoreRepository.findById(id).orElseThrow(() -> new GameException("Game não encontrado na base de dados"));
             return new GameEntityDto(game);
     }
 
@@ -43,7 +43,7 @@ public class GamesService implements GameServiceImpl {
     public List<CardGameDto> findGameByName(String name) {
             List<GameEntity> listGames = gameStoreRepository.findByNomeContainsIgnoreCase(name);
             if(listGames.isEmpty()){
-                throw new GameException("Nenhum jogo encontrado");
+                throw new GameException("Game não encontrado na base de dados");
             }
             return listGames.stream().map(CardGameDto::new).collect(Collectors.toList());
     }
@@ -53,7 +53,7 @@ public class GamesService implements GameServiceImpl {
 
             List<CardGameDto> listGames = gameStoreRepository.findBySessao(id).stream().map(CardGameDto::new).collect(Collectors.toList());
             if(listGames.isEmpty()) {
-                throw new GameException("Nenhum jogo encontrado");
+                throw new GameException("Nenhum jogo encontrado na base de dados");
             }
             return listGames;
 
