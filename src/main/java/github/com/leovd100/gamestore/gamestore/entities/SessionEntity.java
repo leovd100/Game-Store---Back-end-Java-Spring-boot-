@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @Table(name = "sessao")
-public class SessaoEntity {
+public class SessionEntity {
 	
 	
 	//select g.nome, g.preco, s.sessao from games as g inner join sessao as s on g.secao_id = s.id  

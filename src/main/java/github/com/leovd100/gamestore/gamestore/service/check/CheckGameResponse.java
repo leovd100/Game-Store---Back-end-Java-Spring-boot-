@@ -1,4 +1,4 @@
-package github.com.leovd100.gamestore.gamestore.service;
+package github.com.leovd100.gamestore.gamestore.service.check;
 
 import github.com.leovd100.gamestore.gamestore.entities.GameEntity;
 import github.com.leovd100.gamestore.gamestore.entities.errorEntity.ErrorMapperObject;

@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import github.com.leovd100.gamestore.gamestore.dto.CardGameDto;
+import github.com.leovd100.gamestore.gamestore.dto.GameEntityDto;
 import github.com.leovd100.gamestore.gamestore.service.GamesService;
 import github.com.leovd100.gamestore.gamestore.service.impl.GameServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -23,25 +25,25 @@ public class GameController {
 	private final GameServiceImpl gameService;
 
 	@GetMapping
-	public ResponseEntity<List<GameEntity>> findAll() {
+	public ResponseEntity<List<CardGameDto>> findAll() {
 		return ResponseEntity.ok(gameService.findAllGames());
 	}
 
 	@GetMapping(value = "filter/{id}")
-	public Object findById(@PathVariable Long id) {
-		return gameService.findGameById(id);
+	public ResponseEntity<GameEntityDto> findById(@PathVariable Long id) {
+		return ResponseEntity.ok(gameService.findGameById(id));
 	}
 	
 	
 	@GetMapping(value = "/filter")
-	public ResponseEntity<List<GameEntity>> findByGameName(@RequestParam("name") String name){
+	public ResponseEntity<List<CardGameDto>> findByGameName(@RequestParam("name") String name){
 		return ResponseEntity.ok(gameService.findGameByName(name));
 	}
 	
 	///http://localhost:8081/games/filter/sessao?id=2
 	
 	@GetMapping(value = "/filter/sessao")
-	public ResponseEntity<List<GameEntity>> findBySessionId(@RequestParam("id") Integer id){
+	public ResponseEntity<List<CardGameDto>> findBySessionId(@RequestParam("id") Integer id){
 		return ResponseEntity.ok(gameService.findGamesBySession(id));
 	}
 	

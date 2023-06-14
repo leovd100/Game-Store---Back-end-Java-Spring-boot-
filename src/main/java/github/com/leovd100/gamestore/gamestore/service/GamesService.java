@@ -1,15 +1,16 @@
 package github.com.leovd100.gamestore.gamestore.service;
 
-import github.com.leovd100.gamestore.gamestore.Exception.GameException;
+import github.com.leovd100.gamestore.gamestore.exception.GameException;
+import github.com.leovd100.gamestore.gamestore.dto.CardGameDto;
+import github.com.leovd100.gamestore.gamestore.dto.GameEntityDto;
 import github.com.leovd100.gamestore.gamestore.entities.GameEntity;
 import github.com.leovd100.gamestore.gamestore.repository.GameStoreRepository;
+import github.com.leovd100.gamestore.gamestore.service.check.CheckGameResponse;
 import github.com.leovd100.gamestore.gamestore.service.impl.GameServiceImpl;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class GamesService implements GameServiceImpl {
@@ -21,43 +22,40 @@ public class GamesService implements GameServiceImpl {
     }
 
     @Override
-    public List<GameEntity> findAllGames() {
-        try {
-            return gameStoreRepository.findAll();
-        }catch (Exception ex){
-            ex.getMessage();
-            throw new GameException("Nenhum jogo encontrado");
-        }
+    public List<CardGameDto> findAllGames() {
+
+            List<CardGameDto> gameList = gameStoreRepository.findAll().stream().map(CardGameDto::new).collect(Collectors.toList());
+            if(gameList.isEmpty()){
+                throw new GameException("Nenhum jogo encontrado");
+            }
+            return gameList;
+
+
     }
 
     @Override
-    public Object  findGameById(Long id) {
-        try {
-            Optional<?> game = gameStoreRepository.findById(id);
-            return gameCheck.checkGameOption(game);
-        }catch (Exception ex){
-            ex.getMessage();
-            throw new GameException("Nenhum jogo encontrado");
-        }
+    public GameEntityDto findGameById(Long id) {
+            GameEntity game = gameStoreRepository.findById(id).orElseThrow(() -> new GameException("Nenhum jogo encontrado"));
+            return new GameEntityDto(game);
     }
 
     @Override
-    public List<GameEntity> findGameByName(String name) {
-        try {
-            return gameStoreRepository.findByNomeContainsIgnoreCase(name);
-        }catch (Exception ex){
-            ex.getMessage();
-            throw new GameException("Nenhum jogo encontrado");
-        }
+    public List<CardGameDto> findGameByName(String name) {
+            List<GameEntity> listGames = gameStoreRepository.findByNomeContainsIgnoreCase(name);
+            if(listGames.isEmpty()){
+                throw new GameException("Nenhum jogo encontrado");
+            }
+            return listGames.stream().map(CardGameDto::new).collect(Collectors.toList());
     }
 
     @Override
-    public List<GameEntity> findGamesBySession(Integer id) {
-        try {
-            return gameStoreRepository.findBySessao(id);
-        }catch (Exception ex){
-            ex.getMessage();
-            throw new GameException("Nenhum jogo encontrado");
-        }
+    public List<CardGameDto> findGamesBySession(Integer id) {
+
+            List<CardGameDto> listGames = gameStoreRepository.findBySessao(id).stream().map(CardGameDto::new).collect(Collectors.toList());
+            if(listGames.isEmpty()) {
+                throw new GameException("Nenhum jogo encontrado");
+            }
+            return listGames;
+
     }
 }

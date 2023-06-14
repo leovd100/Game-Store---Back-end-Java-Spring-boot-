@@ -1,15 +1,11 @@
 package github.com.leovd100.gamestore.gamestore.repository;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import github.com.leovd100.gamestore.gamestore.entities.GameEntity;
-import github.com.leovd100.gamestore.gamestore.entities.SessaoEntity;
+import github.com.leovd100.gamestore.gamestore.entities.SessionEntity;
 
 @Repository
-public interface SessaoRepository extends JpaRepository<SessaoEntity, Long> {
+public interface SessaoRepository extends JpaRepository<SessionEntity, Long> {
 	
 }

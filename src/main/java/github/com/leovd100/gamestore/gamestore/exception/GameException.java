@@ -1,4 +1,4 @@
-package github.com.leovd100.gamestore.gamestore.Exception;
+package github.com.leovd100.gamestore.gamestore.exception;
 
 public class GameException extends RuntimeException{
 
